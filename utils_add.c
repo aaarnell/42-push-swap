@@ -75,6 +75,8 @@ t_list *ft_crtlst(char **argv)
 	res = NULL;
 	while (argv[i])
 	{
+		ft_putstr_fd(argv[i], 1);
+		write(1, " ", 1);
 		cnt = malloc(sizeof(int));
 		*cnt = atoi(argv[i]);		//поправить на свой atoi
 		tmp = ft_lstnew(cnt);
@@ -86,5 +88,6 @@ t_list *ft_crtlst(char **argv)
 		ft_lstadd_back(&res, tmp);
 		i++;
 	}
+	write(1, "\n", 1);
 	return (res);
 }
