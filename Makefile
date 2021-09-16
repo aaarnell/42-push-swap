@@ -17,11 +17,11 @@ OBJS	=	$(SRS:.c=.o)
 all : 		$(NAME)
 
 %.o :		%.c $(HD)
-			gcc $(FLAGS) -c $< -o $@ -I $(HD)
+			gcc $(FLAGS) -g -c $< -o $@ -I $(HD)
 
 $(NAME)	: 	$(OBJS)
 			$(MAKE) -C $(SRC_LIB)
-			gcc $(FLAGS) $(OBJS) $(SRC_LIB)/$(LIBFT) -o $(NAME)
+			gcc $(FLAGS) -g $(OBJS) $(SRC_LIB)/$(LIBFT) -o $(NAME)
 
 clean :
 			$(MAKE) clean -C $(SRC_LIB)

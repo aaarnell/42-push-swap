@@ -32,21 +32,23 @@ t_list *sort3(t_list *lst)
 			else if (i%2)
 			{
 				ft_lstpush(&st2, &st1);
-				ft_lstswp(st2);
+				st2 = ft_lstswp(st2);
 				op++;
 			}
 			else
 			{
 				ft_lstpush(&st2, &st1);
-				ft_lstrot(st2);
+				st2 = ft_lstrot(st2);
 				op++;
 			}
 		}
 		else
 			st1 = ft_lstrot(st1);
-		write(1, "post\n", 5);
 		wr_prl_st(st1, st2);
 		op++;
+		write(1, "Операций: ", 18);
+		ft_putnbr_fd(op, 1);
+		write(1, "\n\n", 2);
 	}
 	while (1)
 	{
@@ -68,9 +70,11 @@ t_list *sort3(t_list *lst)
 		}
 		else
 			st1 = ft_lstrot(st1);
-		write(1, "post\n", 5);
 		wr_prl_st(st1, st2);
 		op++;
+		write(1, "Операций: ", 18);
+		ft_putnbr_fd(op, 1);
+		write(1, "\n\n", 2);
 	}
 	printf("i = %d\t", i);
 	printf("op = %d\n", op);
