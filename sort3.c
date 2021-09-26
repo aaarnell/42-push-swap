@@ -8,6 +8,9 @@ t_list *sort3(t_list *lst)
 	int max;
 	int op;
 	int i;
+	int c; //для остановки при ошибке и бесконечном цикле
+
+	c = 9 * ft_lstsize(lst);
 
 	if (!lst || !lst->next)
 		return (lst);
@@ -57,7 +60,8 @@ t_list *sort3(t_list *lst)
 		write(1, "\n", 1);
 		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
 			break;
-		if (max != *(int *)(st1->content) && st2)
+
+		/*if (max != *(int *)(st1->content) && st2)
 		{
 			if (*(int *)(st1->content) >= *(int *)(st2->content))
 				ft_lstpush(&st1, &st2);
@@ -67,7 +71,9 @@ t_list *sort3(t_list *lst)
 				ft_lstpush(&st1, &st2);
 				op++;
 			}
-		}
+		}*/
+		if (st2 && *(int *)(st1->content) >= *(int *)(st2->content))
+			ft_lstpush(&st1, &st2);
 		else
 			st1 = ft_lstrot(st1);
 		wr_prl_st(st1, st2);
@@ -75,6 +81,11 @@ t_list *sort3(t_list *lst)
 		write(1, "Операций: ", 18);
 		ft_putnbr_fd(op, 1);
 		write(1, "\n\n", 2);
+		if (i > c)	//остановка при бесконечном цикле
+		{
+			write(1, "err: i > c\n", 11);
+			break;
+		}
 	}
 	printf("i = %d\t", i);
 	printf("op = %d\n", op);
