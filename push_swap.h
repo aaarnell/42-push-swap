@@ -5,6 +5,8 @@
 
 void	wr_wr(void *cnt);	//Функция для печати цифры из контента. Удалить при публикации
 void	wr_prl_st(t_list *lst1, t_list *lst2);	//Функция для печати контента стеков. Удалить при публикации
+void	wr_st(t_list *lst);	//Функция для печати контента стека. Удалить при публикации
+
 t_list	*ft_crtlst(char **argv);
 int		chk_ord(t_list *lst);
 void	srch_minmax(t_list *lst, int *min, int *max);

@@ -47,7 +47,11 @@ t_list *sort3(t_list *lst)
 		}
 		else
 			st1 = ft_lstrot(st1);
-		wr_prl_st(st1, st2);
+		//wr_prl_st(st1, st2);
+		write(1, "st1: ", 5);
+		wr_st(st1);
+		write(1, "st2: ", 5);
+		wr_st(st2);
 		op++;
 		write(1, "Операций: ", 18);
 		ft_putnbr_fd(op, 1);
@@ -60,23 +64,15 @@ t_list *sort3(t_list *lst)
 		write(1, "\n", 1);
 		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
 			break;
-
-		/*if (max != *(int *)(st1->content) && st2)
-		{
-			if (*(int *)(st1->content) >= *(int *)(st2->content))
-				ft_lstpush(&st1, &st2);
-			else
-			{
-				st1 = ft_lstrot(st1);
-				ft_lstpush(&st1, &st2);
-				op++;
-			}
-		}*/
 		if (st2 && *(int *)(st1->content) >= *(int *)(st2->content))
 			ft_lstpush(&st1, &st2);
 		else
 			st1 = ft_lstrot(st1);
-		wr_prl_st(st1, st2);
+		//wr_prl_st(st1, st2);
+		write(1, "st1: ", 5);
+		wr_st(st1);
+		write(1, "st2: ", 5);
+		wr_st(st2);
 		op++;
 		write(1, "Операций: ", 18);
 		ft_putnbr_fd(op, 1);

@@ -33,6 +33,18 @@ void wr_prl_st(t_list *lst1, t_list *lst2)
 	}
 }
 //Функция для печати контента стеков. Удалить при публикации
+//Функция для печати контента стека. Удалить при публикации
+void wr_st(t_list *lst)
+{
+	while (lst)
+	{
+		ft_putnbr_fd(*(int *)(lst->content), 1);
+		write(1, " ", 1);
+		lst = lst->next;
+	}
+	write(1, "\n", 1);
+}
+//Функция для печати контента стека. Удалить при публикации
 
 void srch_minmax(t_list *lst, int *min, int *max)
 {
@@ -78,7 +90,7 @@ t_list *ft_crtlst(char **argv)
 		ft_putstr_fd(argv[i], 1);
 		write(1, " ", 1);
 		cnt = malloc(sizeof(int));
-		*cnt = ft_atoi(argv[i]);		//поправить на свой atoi
+		*cnt = ft_atoi(argv[i]);
 		tmp = ft_lstnew(cnt);
 		if (!tmp && res)
 		{

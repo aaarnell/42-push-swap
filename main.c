@@ -15,11 +15,13 @@ int main(int argc, char **argv)
 	else
 		tmp = sort3(first);
 	printf("\n");
+	printf("Результат: ");
 	while (tmp)
 	{
-		printf("%d. content '%d' \n", i, *(int *)(tmp->content));
+		printf("%d ", *(int *)(tmp->content));
 		tmp = tmp->next;
 		i++;
 	}
+	printf("\n");
 	return (0);
 }
