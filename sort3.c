@@ -19,15 +19,22 @@ t_list *sort3(t_list *lst)
 	st1 = lst;
 	st2 = NULL;
 	srch_minmax(lst, &min, &max);
-	write(1, "start\n", 6);
-	wr_prl_st(st1, st2);
+	write(1, "start\t\t", 7);
+	write(1, "st1: ", 5);
+	wr_st(st1);
+	write(1, "st2: ", 5);
+	wr_st(st2);
+	write(1, "\n\n", 1);
 	while (1)
 	{
 		write(1, "Итерация ", 18);
 		ft_putnbr_fd(i++, 1);
-		write(1, "\n", 1);
+		write(1, "\t", 1);
 		if (min == *(int *)(st1->content) && chk_ord(st1))
+		{
+			write(1, "\n", 1);
 			break;
+		}
 		if (min != *(int *)(st1->content) && max != *(int *)(st1->content))
 		{
 			if (!st2 || *(int *)(st1->content) <= *(int *)(st2->content))
@@ -53,7 +60,7 @@ t_list *sort3(t_list *lst)
 		write(1, "st2: ", 5);
 		wr_st(st2);
 		op++;
-		write(1, "Операций: ", 18);
+		write(1, "\tОпераций: ", 19);
 		ft_putnbr_fd(op, 1);
 		write(1, "\n\n", 2);
 	}
@@ -61,7 +68,7 @@ t_list *sort3(t_list *lst)
 	{
 		write(1, "Итерация ", 18);
 		ft_putnbr_fd(i++, 1);
-		write(1, "\n", 1);
+		write(1, "\t", 1);
 		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
 			break;
 		if (st2 && *(int *)(st1->content) >= *(int *)(st2->content))
@@ -74,7 +81,7 @@ t_list *sort3(t_list *lst)
 		write(1, "st2: ", 5);
 		wr_st(st2);
 		op++;
-		write(1, "Операций: ", 18);
+		write(1, "\tОпераций: ", 19);
 		ft_putnbr_fd(op, 1);
 		write(1, "\n\n", 2);
 		if (i > c)	//остановка при бесконечном цикле

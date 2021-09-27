@@ -42,7 +42,7 @@ void wr_st(t_list *lst)
 		write(1, " ", 1);
 		lst = lst->next;
 	}
-	write(1, "\n", 1);
+	write(1, "\t", 1);
 }
 //Функция для печати контента стека. Удалить при публикации
 
@@ -87,8 +87,8 @@ t_list *ft_crtlst(char **argv)
 	res = NULL;
 	while (argv[i])
 	{
-		ft_putstr_fd(argv[i], 1);
-		write(1, " ", 1);
+		//ft_putstr_fd(argv[i], 1);
+		//write(1, " ", 1);
 		cnt = malloc(sizeof(int));
 		*cnt = ft_atoi(argv[i]);
 		tmp = ft_lstnew(cnt);
@@ -103,3 +103,4 @@ t_list *ft_crtlst(char **argv)
 	write(1, "\n", 1);
 	return (res);
 }
+
