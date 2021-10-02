@@ -7,13 +7,17 @@ int main(int argc, char **argv)
 	t_list *first;
 	t_list *tmp;
 	int i;
+
 	i = 0;
-	if (argc > 1) i = 0;
-	first = ft_crtlst(argv);
-	if (argc == 4)
+	tmp = NULL;
+	if (argc > 1)
+		first = ft_crtlst(argv);
+	if (argc == 2)
+		tmp = first;
+	else if (argc <= 4)
 		tmp = sort1(first);
-	else
-		tmp = sort3(first);
+	else if (argc <= 7)
+		tmp = sort4(first);
 	printf("\n");
 	printf("Результат: ");
 	while (tmp)

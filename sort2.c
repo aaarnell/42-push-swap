@@ -51,12 +51,12 @@ t_list *sort2(t_list *lst)
 			*/
 			if (drc == 0)
 			{
-				tmp = ft_lstrot(tmp);
+				ft_lstrot(&tmp);
 				//write(1, "ra\n", 3);
 			}
 			else
 			{
-				tmp = ft_lstrev(tmp);
+				ft_lstrev(&tmp);
 				//write(1, "rra\n", 4);
 			}
 			i++;
@@ -77,7 +77,7 @@ t_list *sort2(t_list *lst)
 			//write(1, tmp2->content, 2);
 			/*wr_wr(tmp2->content);
 			write(1, "\t", 1);*/
-			tmp = ft_lstswp(tmp);
+			ft_lstswp(&tmp);
 			//i = tmp2->content;
 			//write(1, "sa\n", 3);
 			i++;

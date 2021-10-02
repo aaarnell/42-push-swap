@@ -10,7 +10,7 @@ FLAGS	= 	-Wall -Werror -Wextra
 
 SRS		= 	main.c		utils_add.c		utils_swap.c	\
 			sort1.c		sort2.c			sort3.c			\
-
+			sort3a.c	sort4.c
 
 OBJS	=	$(SRS:.c=.o)
 

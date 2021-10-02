@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_list *sort3(t_list *lst)
+t_list *sort3a(t_list *lst)
 {
 	t_list *st1;
 	t_list *st2;
@@ -37,24 +37,15 @@ t_list *sort3(t_list *lst)
 		}
 		if (min != *(int *)(st1->content) && max != *(int *)(st1->content))
 		{
-			if (!st2 || *(int *)(st1->content) <= *(int *)(st2->content))
-				ft_lstpush(&st2, &st1);
-			else if (i%2)
-			{
-				ft_lstpush(&st2, &st1);
-				ft_lstswp(&st2);
-				op++;
-			}
+			ft_pushswap(&st2, &st1, "pa");
+			if (i%2)
+				ft_pushswap(&st2, NULL, "sb");
 			else
-			{
-				ft_lstpush(&st2, &st1);
-				ft_lstrot(&st2);
-				op++;
-			}
+				ft_pushswap(&st2, NULL, "rb");
+			op++;
 		}
 		else
-			ft_lstrot(&st1);
-		//wr_prl_st(st1, st2);
+			ft_pushswap(&st1, NULL, "ra");
 		write(1, "st1: ", 5);
 		wr_st(st1);
 		write(1, "st2: ", 5);
@@ -72,10 +63,9 @@ t_list *sort3(t_list *lst)
 		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
 			break;
 		if (st2 && *(int *)(st1->content) >= *(int *)(st2->content))
-			ft_lstpush(&st1, &st2);
+			ft_pushswap(&st1, &st2, "pa");
 		else
-			ft_lstrot(&st1);
-		//wr_prl_st(st1, st2);
+			ft_pushswap(&st1, NULL, "ra");
 		write(1, "st1: ", 5);
 		wr_st(st1);
 		write(1, "st2: ", 5);

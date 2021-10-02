@@ -66,12 +66,12 @@ int chk_ord(t_list *lst)
 	int i;
 
 	i = *(int *)(lst->content);
-	while (lst)
+	while (lst && lst->next)
 	{
+		lst = lst->next;
 		if (i > *(int *)(lst->content))
 			return (0);
 		i = *(int *)(lst->content);
-		lst = lst->next;
 	}
 	return (1);
 }
@@ -104,3 +104,35 @@ t_list *ft_crtlst(char **argv)
 	return (res);
 }
 
+void ft_put_op(char *op, char *l_op)
+{
+	printf("start: op = '%s'\tl_op = '%s'\n", op, l_op);
+	if (!l_op)
+		ft_strlcpy(l_op, op, 4);
+	if ((!ft_strncmp(l_op, "sa", 2) && !ft_strncmp(op, "sb", 2)) \
+		|| (!ft_strncmp(l_op, "sb", 2) && !ft_strncmp(op, "sa", 2)))
+	{
+		ft_putstr_fd("ss\n\0", 1);
+		ft_bzero(l_op, 4);
+	}
+	else if ((!ft_strncmp(l_op, "ra", 2) && !ft_strncmp(op, "rb", 2)) \
+		|| (!ft_strncmp(l_op, "rb", 2) && !ft_strncmp(op, "ra", 2)))
+	{
+		ft_putstr_fd("rr\n\0", 1);
+		ft_bzero(l_op, 4);
+	}
+	else if ((!ft_strncmp(l_op, "rra", 2) && !ft_strncmp(op, "rrb", 2)) \
+		|| (!ft_strncmp(l_op, "rrb", 2) && !ft_strncmp(op, "rra", 2)))
+	{
+		ft_putstr_fd("rrr\n\0", 1);
+		ft_bzero(l_op, 4);
+	}
+	else
+	{
+		ft_putstr_fd(l_op, 1);
+		write(1, "\n", 1);
+		ft_bzero(l_op, 4);
+		ft_strlcpy(l_op, op, 4);
+	}
+	printf("end: op = '%s'\tl_op = '%s'\n", op, l_op);
+}
