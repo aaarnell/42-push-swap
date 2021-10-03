@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+static int cnt = 0;
+
 void ft_lstswp(t_list **lst)	// Изменение первых двух элементов местами (sa/sb/ss)
 {
 	t_list *tmp;
@@ -103,4 +105,27 @@ void ft_pushswap2(t_list **lst1, t_list **lst2, char *op, char *l_op)
 	if (!ft_strncmp(op, "pb", 2))
 		ft_lstpush(lst2, lst1);
 	ft_put_op(op, l_op);
+	printf("Операция %d\n", ++cnt);
+}
+
+void ft_pushswap4_2(t_list **lst1, t_list **lst2, enum Ops op, enum Ops *l_op)
+{
+	if (op == RRA || op == RRR)
+		ft_lstrev(lst1);
+	if (op == RRB || op == RRR)
+		ft_lstrev(lst2);
+	if (op == RA || op == RR)
+			ft_lstrot(lst1);
+	if (op == RB || op == RR)
+			ft_lstrot(lst2);
+	if (op == SA || op == SS)
+		ft_lstswp(lst1);
+	if (op == SB || op == SS)
+		ft_lstswp(lst2);
+	if (op == PA)
+		ft_lstpush(lst1, lst2);
+	if (op == PB)
+		ft_lstpush(lst2, lst1);
+	//printf("Операция %d\t", ++cnt);
+	ft_put_op4_2(&op, l_op);
 }

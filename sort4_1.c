@@ -1,22 +1,23 @@
 #include "push_swap.h"
 
-static int sort4s(t_list **lst1, t_list **lst2, char *l_op)
+static int sort4_1s(t_list **lst1, t_list **lst2, char *l_op)
 {
-	//t_list *tmp;
+	t_list *tmp;
 	t_list *tmp2;
-	t_list *tm[2];
+
 	int min;
 	int max;
 	char op[4];
 	char c;
-/*
-	if (!lst1)
+
+	tmp = NULL;
+	if (!lst1 && lst2)
 	{
 		tmp = *lst2;
 		tmp2 = (*lst2)->next;
 		c = 'b';
 	}
-	if (!lst2)
+	else if (lst1 && !lst2)
 	{
 		tmp = *lst1;
 		tmp2 = (*lst1)->next;
@@ -30,43 +31,12 @@ static int sort4s(t_list **lst1, t_list **lst2, char *l_op)
 		ft_strlcpy(op, "r", 4);
 	else
 		ft_strlcpy(op, "s", 4);
-	ft_strlcat(op, &c, 4);
+	ft_strlcpy(&op[1], &c, 2);
 	ft_pushswap2(lst1, lst2, op, l_op);
 	return (0);
-*/
-	int i;
-	printf("______\n");
-	i = 0;
-	tm[0] = *lst1;
-	tm[1] = *lst2;
-	while (i < 2)
-	{
-		tmp2 = tm[i]->next;
-		c = 'a' + i;
-		ft_bzero(op, 4);
-		srch_minmax(tm[i], &min, &max);
-		printf("______%d\n", i);
-		printf("ps: op = '%s'\tl_op = '%s'\tc = %c\n", op, l_op, c);
-		if (min == *(int *)(tm[i]->content) && chk_ord(tm[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (*(int *)(tm[i]->content) <= *(int *)(tmp2->content) || max == *(int *)(tm[i]->content))
-			ft_strlcpy(op, "r", 4);
-		else
-			ft_strlcpy(op, "s", 4);
-		printf("pe: op = '%s'\tl_op = '%s'\n", op, l_op);
-		ft_strlcpy(&op[1], &c, 2);
-		printf("ppe: op = '%s'\tl_op = '%s'\n", op, l_op);
-		ft_pushswap2(lst1, lst2, op, l_op);
-		i++;
-	}
-	wr_prl_st(*lst1, *lst2);
-	return (chk_ord(*lst1) * chk_ord(*lst2));
 }
 
-t_list *sort4(t_list *lst)
+t_list *sort4_1(t_list *lst)
 {
 	t_list *st1;
 	t_list *st2;
@@ -100,7 +70,7 @@ t_list *sort4(t_list *lst)
 	{
 		printf("sort 2 stacks\n");
 		wr_prl_st(st1, st2);
-		if (sort4s(&st1, &st2, l_op))
+		if ((sort4_1s(&st1, NULL, l_op) * sort4_1s(NULL, &st2, l_op)))
 			break;
 	}
 	//перейдем в стеке1 на максимальный элемент

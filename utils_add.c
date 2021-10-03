@@ -1,5 +1,20 @@
 #include "push_swap.h"
 
+static char *OpNms[] = {
+	"NaN",
+	"pa",
+	"pb",
+	"ra",
+	"rb",
+	"rr",
+	"rra",
+	"rrb",
+	"rrr",
+	"sa",
+	"sb",
+	"ss"
+};
+
 //Функция для печати цифры из контента. Удалить при публикации
 void wr_wr(void *cnt)
 {
@@ -100,7 +115,7 @@ t_list *ft_crtlst(char **argv)
 		ft_lstadd_back(&res, tmp);
 		i++;
 	}
-	write(1, "\n", 1);
+	//write(1, "\n", 1);
 	return (res);
 }
 
@@ -135,4 +150,33 @@ void ft_put_op(char *op, char *l_op)
 		ft_strlcpy(l_op, op, 4);
 	}
 	printf("end: op = '%s'\tl_op = '%s'\n", op, l_op);
+}
+
+void ft_put_op4_2(enum Ops *op, enum Ops *l_op)
+{
+	printf("start: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
+	if (*l_op == NaN)
+		*l_op = *op;
+	if ((*l_op == SA && *op == SB) || (*l_op == SB && *op == SA))
+	{
+		ft_putstr_fd("ss\n\0", 1);
+		*l_op = NaN;
+	}
+	else if ((*l_op == RA && *op == RB) || (*l_op == RB && *op == RA))
+	{
+		ft_putstr_fd("rr\n\0", 1);
+		*l_op = NaN;
+	}
+	else if ((*l_op == RRA && *op == RRB) || (*l_op == RRB && *op == RRA))
+	{
+		ft_putstr_fd("rrr\n\0", 1);
+		*l_op = NaN;
+	}
+	else
+	{
+		ft_putstr_fd(OpNms[*l_op], 1);
+		write(1, "\n", 1);
+		*l_op = *op;
+	}
+	printf("end: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
 }

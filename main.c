@@ -17,8 +17,8 @@ int main(int argc, char **argv)
 	else if (argc <= 4)
 		tmp = sort1(first);
 	else if (argc <= 7)
-		tmp = sort4(first);
-	printf("\n");
+		tmp = sort4_2(first);
+	//printf("\n");
 	printf("Результат: ");
 	while (tmp)
 	{
