@@ -154,10 +154,10 @@ void ft_put_op(char *op, char *l_op)
 
 void ft_put_op4_2(enum Ops *op, enum Ops *l_op)
 {
-	printf("start: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
+	//printf("start: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
 	if (*l_op == NaN)
 		*l_op = *op;
-	if ((*l_op == SA && *op == SB) || (*l_op == SB && *op == SA))
+	else if ((*l_op == SA && *op == SB) || (*l_op == SB && *op == SA))
 	{
 		ft_putstr_fd("ss\n\0", 1);
 		*l_op = NaN;
@@ -178,5 +178,5 @@ void ft_put_op4_2(enum Ops *op, enum Ops *l_op)
 		write(1, "\n", 1);
 		*l_op = *op;
 	}
-	printf("end: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
+	//printf("end: op = '%s'\tl_op = '%s'\n", OpNms[*op], OpNms[*l_op]);
 }

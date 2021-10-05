@@ -42,5 +42,6 @@ t_list	*sort3a(t_list *lst);
 t_list	*sort4(t_list *lst);
 t_list	*sort4_1(t_list *lst);
 t_list	*sort4_2(t_list *lst);
+t_list	*sort1_4_2(t_list *lst);
 
 #endif

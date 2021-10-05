@@ -43,39 +43,33 @@ t_list *sort4_2(t_list *lst)
 	st2 = NULL;
 	sz1 = ft_lstsize(lst);
 	l_op = NaN;
-	srch_minmax(lst, &min, &max);
 	//сбросим в стек2 все элементы кроме 3х
-	while (sz1 > 3)
-	{
-		//printf("sz1 = %d\n", sz1);
-		if (max == *(int *)(st1->content))
-			ft_pushswap4_2(&st1, &st2, RA, &l_op);
-		else
-		{
-			ft_pushswap4_2(&st1, &st2, PB, &l_op);
-			sz1--;
-		}
-	}
+	while (sz1-- > 3)
+		ft_pushswap4_2(&st1, &st2, PB, &l_op);
 	//сортируем два стека
-	while (1)
-	{
-		//printf("sort 2 stacks\n");
-		//wr_prl_st(st1, st2);
-		if ((sort4_2s(&st1, NULL, &l_op) * sort4_2s(NULL, &st2, &l_op)))
-			break;
-	}
-	//printf("__bb__\n");
-	//забрасываем все из 2 стека в 1й
+	while (!(sort4_2s(&st1, NULL, &l_op) * sort4_2s(NULL, &st2, &l_op)));
+	//скидываем все из 2 в 1 стек
+	srch_minmax(st1, &min, &max);
 	while (1)
 	{
 		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
 			break;
-		if (st2 && *(int *)(st2->content) <= *(int *)(st1->content))
+		if (st2 && min == *(int *)(st1->content) && min > *(int *)(st2->content))
+		{
+			ft_pushswap4_2(&st1, &st2, PA, &l_op);
+			min = *(int *)(st1->content);
+		}
+		else if (st2 && max == *(int *)(st1->content) && max < *(int *)(st2->content))
+		{
+			ft_pushswap4_2(&st1, &st2, RA, &l_op);
+			ft_pushswap4_2(&st1, &st2, PA, &l_op);
+			max = *(int *)(st1->content);
+		}
+		else if (st2 && *(int *)(st2->content) <= *(int *)(st1->content))
 			ft_pushswap4_2(&st1, &st2, PA, &l_op);
 		else if (*(int *)(st1->content) <= *(int *)((st1->next)->content) || max == *(int *)(st1->content))
 			ft_pushswap4_2(&st1, &st2, RA, &l_op);
-		//ft_put_op4_2(&l_op, &l_op);
-		//wr_prl_st(st1, st2);
 	}
+	ft_put_op4_2(&l_op, &l_op);	//печатаем последнюю операцию
 	return (st1);
 }
