@@ -8,10 +8,9 @@ HD		=	push_swap.h
 
 FLAGS	= 	-Wall -Werror -Wextra
 
-SRS		= 	main.c		utils_add.c		utils_swap.c	\
-			sort1.c		sort2.c			sort3.c			\
-			sort3a.c	sort4.c			sort4_1.c		\
-			sort4_2.c	sort1_4_2.c
+SRS		= 	main.c				utils_add.c			utils_add_2.c	\
+			utils_swap.c		sort_3_items.c		sort_6_items.c	\
+			sort_100_items_4.c	utils_aux.c
 
 OBJS	=	$(SRS:.c=.o)
 

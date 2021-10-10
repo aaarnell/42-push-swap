@@ -15,17 +15,19 @@ int main(int argc, char **argv)
 	if (argc == 2)
 		tmp = first;
 	else if (argc <= 4)
-		tmp = sort1_4_2(first);
-	else //if (argc <= 7)
-		tmp = sort4_2(first);
+		tmp = srt_3itm(first);
+	else if (argc <= 7)
+		tmp = srt_6itm(first);
+	else
+		tmp = srt100t_4(first);
 	//printf("\n");
-	printf("Результат: ");
+	/*printf("Результат: ");
 	while (tmp)
 	{
 		printf("%d ", *(int *)(tmp->content));
 		tmp = tmp->next;
 		i++;
 	}
-	printf("\n");
+	printf("\n");*/
 	return (0);
 }
