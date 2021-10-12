@@ -58,9 +58,9 @@ void ft_pushswap4_2(t_list **lst1, t_list **lst2, enum Ops op, enum Ops *l_op)
 	if (op == RRB || op == RRR)
 		ft_lstrev(lst2);
 	if (op == RA || op == RR)
-			ft_lstrot(lst1);
+		ft_lstrot(lst1);
 	if (op == RB || op == RR)
-			ft_lstrot(lst2);
+		ft_lstrot(lst2);
 	if (op == SA || op == SS)
 		ft_lstswp(lst1);
 	if (op == SB || op == SS)
@@ -70,5 +70,33 @@ void ft_pushswap4_2(t_list **lst1, t_list **lst2, enum Ops op, enum Ops *l_op)
 	if (op == PB)
 		ft_lstpush(lst2, lst1);
 	ft_put_op4_2(&op, l_op);
-	*l_op = op;
+
+	//поиск косяков. Убрать все, что ниже, когда закончу
+	//*l_op = NaN;
+	//chk_op(*lst1, *lst2, &op);
+}
+
+void ft_pushswap4_3(t_vrb *vr, enum Ops op, enum Ops *l_op)
+{
+	if (op == RRA || op == RRR)
+		ft_lstrev(&(vr->st1));
+	if (op == RRB || op == RRR)
+		ft_lstrev(&(vr->st2));
+	if (op == RA || op == RR)
+		ft_lstrot(&(vr->st1));
+	if (op == RB || op == RR)
+		ft_lstrot(&(vr->st2));
+	if (op == SA || op == SS)
+		ft_lstswp(&(vr->st1));
+	if (op == SB || op == SS)
+		ft_lstswp(&(vr->st2));
+	if (op == PA)
+		ft_lstpush(&(vr->st1), &(vr->st2));
+	if (op == PB)
+		ft_lstpush(&(vr->st2), &(vr->st1));
+	ft_put_op4_2(&op, l_op);
+
+	//поиск косяков. Убрать все, что ниже, когда закончу
+	//*l_op = NaN;
+	//chk_op(*lst1, *lst2, &op);
 }

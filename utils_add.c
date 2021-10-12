@@ -2,17 +2,17 @@
 
 static char *OpNms[] = {
 	"NaN",
-	"pa",
-	"pb",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	"sa",
-	"sb",
-	"ss"
+	"pa\n",
+	"pb\n",
+	"ra\n",
+	"rb\n",
+	"rr\n",
+	"rra\n",
+	"rrb\n",
+	"rrr\n",
+	"sa\n",
+	"sb\n",
+	"ss\n"
 };
 
 void srch_minmax(t_list *lst, int *min, int *max)
@@ -84,28 +84,35 @@ t_list *ft_crtlst(char **argv)
 }
 
 void ft_put_op4_2(enum Ops *op, enum Ops *l_op)
-{
+{/*
 	if (*l_op == NaN)
 		*l_op = *op;
 	else if ((*l_op == SA && *op == SB) || (*l_op == SB && *op == SA))
 	{
-		ft_putstr_fd("ss\n\0", 1);
+		ft_putstr_fd("ss\n", 1);
 		*l_op = NaN;
 	}
 	else if ((*l_op == RA && *op == RB) || (*l_op == RB && *op == RA))
 	{
-		ft_putstr_fd("rr\n\0", 1);
+		ft_putstr_fd("rr\n", 1);
 		*l_op = NaN;
 	}
 	else if ((*l_op == RRA && *op == RRB) || (*l_op == RRB && *op == RRA))
 	{
-		ft_putstr_fd("rrr\n\0", 1);
+		ft_putstr_fd("rrr\n", 1);
 		*l_op = NaN;
 	}
 	else
 	{
 		ft_putstr_fd(OpNms[*l_op], 1);
-		write(1, "\n", 1);
+		//write(1, "\n", 1);
 		*l_op = *op;
-	}
+	}*/
+
+	ft_putstr_fd(OpNms[*op], 1);
+	/*if (*op == RRA || *op == RRB || *op == RRR)
+		write(1, OpNms[*op], 4);
+	else
+		write(1, OpNms[*op], 3);*/
+	*l_op = NaN;
 }

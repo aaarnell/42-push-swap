@@ -6,12 +6,16 @@ int main(int argc, char **argv)
 	//сделать проверку числа аргументов если 1, то аргументов нет, если 2, то вернуть то, что есть
 	t_list *first;
 	t_list *tmp;
-	int i;
+	t_vrb vr;
 
-	i = 0;
 	tmp = NULL;
 	if (argc > 1)
-		first = ft_crtlst(argv);
+		tmp = NULL;
+	first = ft_crtlst(argv);
+	vr.st1 = first;
+	vr.st2 = NULL;
+	vr.st_1 = ft_crtlst(argv);
+	vr.st_2 = NULL;
 	if (argc == 2)
 		tmp = first;
 	else if (argc <= 4)
@@ -19,15 +23,14 @@ int main(int argc, char **argv)
 	else if (argc <= 7)
 		tmp = srt_6itm(first);
 	else
-		tmp = srt100t_4(first);
+		tmp = srt100t_4(&vr);
 	//printf("\n");
-	/*printf("Результат: ");
+	printf("Результат: ");
 	while (tmp)
 	{
 		printf("%d ", *(int *)(tmp->content));
 		tmp = tmp->next;
-		i++;
 	}
-	printf("\n");*/
+	printf("\n");
 	return (0);
 }
