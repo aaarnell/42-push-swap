@@ -1,4 +1,3 @@
-
 SRC_LIB		=	./libft
 LIBFT		=	libft.a
 
@@ -8,9 +7,9 @@ HD		=	push_swap.h
 
 FLAGS	= 	-Wall -Werror -Wextra
 
-SRS		= 	main.c				utils_add.c			utils_add_2.c	\
-			utils_swap.c		sort_3_items.c		sort_6_items.c	\
-			sort_100_items_4.c	utils_aux.c
+SRS		= 	main.c			utils_chk.c			utils_swap.c	\
+			utils_add.c		utils_add2.c		sort_3_items.c	\
+			sort_6_items.c	sort_100_items.c
 
 OBJS	=	$(SRS:.c=.o)
 

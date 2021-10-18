@@ -1,47 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_6_items.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 22:13:15 by aarnell           #+#    #+#             */
+/*   Updated: 2021/10/18 22:23:35 by aarnell          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_list *srt_6itm(t_list *lst)
+void	srt_6itm(t_vrb *vr)
 {
-	t_list *st1;
-	t_list *st2;
-	int sz1;
-	int min;
-	int max;
-	enum Ops l_op;
-
-	if (!lst || !lst->next)
-		return (lst);
-	st1 = lst;
-	st2 = NULL;
-	sz1 = ft_lstsize(lst);
-	l_op = NaN;
-	//сбросим в стек2 все элементы кроме 3х
-	while (sz1-- > 3)
-		ft_pushswap4_2(&st1, &st2, PB, &l_op);
-	//сортируем два стека
-	while (!(pr_srt_1it(&st1, NULL, &l_op) * pr_srt_1it(NULL, &st2, &l_op)));
-	//скидываем все из 2 в 1 стек
-	srch_minmax(st1, &min, &max);
-	while (1)
+	if (!vr->st1 || !vr->st1->next)
+		return ;
+	vr->ln1 = ft_lstsize(vr->st1);
+	srch_mnavmx(vr->st1, &vr->min, &vr->avg, &vr->max);
+	if (vr->min == *(int *)(vr->st1->content) && ft_chkord(vr->st1))
+		return ;
+	while (vr->ln1 > 3)
 	{
-		if (min == *(int *)(st1->content) && !st2 && chk_ord(st1))
-			break;
-		if (st2 && min == *(int *)(st1->content) && min > *(int *)(st2->content))
+		if (vr->min != *(int *)(vr->st1->content) && \
+			vr->max != *(int *)(vr->st1->content))
 		{
-			ft_pushswap4_2(&st1, &st2, PA, &l_op);
-			min = *(int *)(st1->content);
+			ft_pswp(vr, PB);
+			vr->ln1--;
 		}
-		else if (st2 && max == *(int *)(st1->content) && max < *(int *)(st2->content))
-		{
-			ft_pushswap4_2(&st1, &st2, RA, &l_op);
-			ft_pushswap4_2(&st1, &st2, PA, &l_op);
-			max = *(int *)(st1->content);
-		}
-		else if (st2 && *(int *)(st2->content) <= *(int *)(st1->content))
-			ft_pushswap4_2(&st1, &st2, PA, &l_op);
-		else if (*(int *)(st1->content) <= *(int *)((st1->next)->content) || max == *(int *)(st1->content))
-			ft_pushswap4_2(&st1, &st2, RA, &l_op);
+		else
+			ft_pswp(vr, RA);
 	}
-	ft_put_op4_2(&l_op, &l_op);	//печатаем последнюю операцию
-	return (st1);
+	srt_3itm(vr);
+	ft_chkmv(vr);
+	ft_trnstmnx(vr, 1, 0);
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_swap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 21:53:29 by aarnell           #+#    #+#             */
+/*   Updated: 2021/10/18 22:16:00 by aarnell          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void ft_lstswp(t_list **lst)	// Изменение первых двух элементов местами (sa/sb/ss)
+void	ft_lstswp(t_list **lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!lst || !(*lst)->next)
 		return ;
@@ -12,9 +24,9 @@ void ft_lstswp(t_list **lst)	// Изменение первых двух эле�
 	*lst = tmp;
 }
 
-void ft_lstpush(t_list **lst1, t_list **lst2)	//Перенос головы второго списка в голову первого (pa/pb)
+void	ft_lstpush(t_list **lst1, t_list **lst2)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!lst2)
 		return ;
@@ -24,9 +36,9 @@ void ft_lstpush(t_list **lst1, t_list **lst2)	//Перенос головы вт
 	*lst2 = tmp;
 }
 
-void ft_lstrot(t_list **lst)	//Перенос головы списка в его конец (ra/rb/rr)
+void	ft_lstrot(t_list **lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!lst || !(*lst)->next)
 		return ;
@@ -36,10 +48,10 @@ void ft_lstrot(t_list **lst)	//Перенос головы списка в ег�
 	*lst = tmp;
 }
 
-void ft_lstrev(t_list **lst)	//Перенос хвоста списка в голову (rra/rrb/rrr)
+void	ft_lstrev(t_list **lst)
 {
-	t_list *tmp;
-	t_list *tmp2;
+	t_list	*tmp;
+	t_list	*tmp2;
 
 	if (!lst || !(*lst)->next)
 		return ;
@@ -51,32 +63,7 @@ void ft_lstrev(t_list **lst)	//Перенос хвоста списка в го�
 	ft_lstadd_front(lst, tmp);
 }
 
-void ft_pushswap4_2(t_list **lst1, t_list **lst2, enum Ops op, enum Ops *l_op)
-{
-	if (op == RRA || op == RRR)
-		ft_lstrev(lst1);
-	if (op == RRB || op == RRR)
-		ft_lstrev(lst2);
-	if (op == RA || op == RR)
-		ft_lstrot(lst1);
-	if (op == RB || op == RR)
-		ft_lstrot(lst2);
-	if (op == SA || op == SS)
-		ft_lstswp(lst1);
-	if (op == SB || op == SS)
-		ft_lstswp(lst2);
-	if (op == PA)
-		ft_lstpush(lst1, lst2);
-	if (op == PB)
-		ft_lstpush(lst2, lst1);
-	ft_put_op4_2(&op, l_op);
-
-	//поиск косяков. Убрать все, что ниже, когда закончу
-	//*l_op = NaN;
-	//chk_op(*lst1, *lst2, &op);
-}
-
-void ft_pushswap4_3(t_vrb *vr, enum Ops op, enum Ops *l_op)
+void	ft_pswp(t_vrb *vr, enum e_Ops op)
 {
 	if (op == RRA || op == RRR)
 		ft_lstrev(&(vr->st1));
@@ -94,9 +81,5 @@ void ft_pushswap4_3(t_vrb *vr, enum Ops op, enum Ops *l_op)
 		ft_lstpush(&(vr->st1), &(vr->st2));
 	if (op == PB)
 		ft_lstpush(&(vr->st2), &(vr->st1));
-	ft_put_op4_2(&op, l_op);
-
-	//поиск косяков. Убрать все, что ниже, когда закончу
-	//*l_op = NaN;
-	//chk_op(*lst1, *lst2, &op);
+	ft_putsop(&op);
 }

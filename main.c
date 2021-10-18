@@ -1,36 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 22:26:53 by aarnell           #+#    #+#             */
+/*   Updated: 2021/10/18 22:27:02 by aarnell          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	//сделать проверку аргументов на отношение к целым числам
-	//сделать проверку числа аргументов если 1, то аргументов нет, если 2, то вернуть то, что есть
-	t_list *first;
-	t_list *tmp;
-	t_vrb vr;
+	t_vrb	vr;
 
-	tmp = NULL;
-	if (argc > 1)
-		tmp = NULL;
-	first = ft_crtlst(argv);
-	vr.st1 = first;
-	vr.st2 = NULL;
-	vr.st_1 = ft_crtlst(argv);
-	vr.st_2 = NULL;
-	if (argc == 2)
-		tmp = first;
-	else if (argc <= 4)
-		tmp = srt_3itm(first);
-	else if (argc <= 7)
-		tmp = srt_6itm(first);
-	else
-		tmp = srt100t_4(&vr);
-	//printf("\n");
-	printf("Результат: ");
-	while (tmp)
+	if (ft_chknbr(argv) || ft_chkdup(argv) || ft_chkmnxint(argv))
 	{
-		printf("%d ", *(int *)(tmp->content));
-		tmp = tmp->next;
+		write(1, "Error\n", 6);
+		exit(0);
 	}
-	printf("\n");
+	vr.st1 = ft_crtlst(argv);
+	vr.st2 = NULL;
+	if (argc > 2)
+	{
+		if (argc <= 4)
+			srt_3itm(&vr);
+		else if (argc <= 7)
+			srt_6itm(&vr);
+		else
+			srt100(&vr);
+	}
+	ft_lstclear(&vr.st1, free);
 	return (0);
 }

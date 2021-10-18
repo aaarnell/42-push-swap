@@ -1,4 +1,4 @@
-#include "../push_swap.h"
+#include "push_swap.h"
 
 //Функция для печати цифры из контента. Удалить при публикации
 void wr_wr(void *cnt)
@@ -42,7 +42,17 @@ void wr_st(t_list *lst)
 		write(1, " ", 1);
 		lst = lst->next;
 	}
-	write(1, "\t", 1);
+	write(1, "\n", 1);
+}
+//Функция для печати контента стека. Удалить при публикации
+//Функция для печати контента стека. Удалить при публикации
+void wr_2st_str(t_list *lst1, t_list *lst2)
+{
+	ft_putstr_fd("st1: ", 1);
+	wr_st(lst1);
+	ft_putstr_fd("st2: ", 1);
+	wr_st(lst2);
+	write(1, "\n", 1);
 }
 //Функция для печати контента стека. Удалить при публикации
 /*
