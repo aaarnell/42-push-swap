@@ -27,7 +27,7 @@ clean :
 			rm -f $(OBJS)
 
 fclean : 	clean
-			$(MAKE) clean -C $(SRC_LIB)
+			$(MAKE) fclean -C $(SRC_LIB)
 			rm -f $(NAME)
 
 re :		fclean all
