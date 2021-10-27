@@ -6,7 +6,7 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:52:06 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/23 19:23:57 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/10/26 19:55:03 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static int	ft_atoi_chk(const char *str)
 	s = 1;
 	cs = 0;
 	e = 0;
+	if (ft_strlen(str) > 11)
+		return (1);
 	while (*str)
 	{
 		if ((*str != ' ' && *str != '-' && *str != '+' && (*str < 9 || *str \
