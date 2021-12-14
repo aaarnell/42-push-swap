@@ -6,7 +6,7 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:53:29 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/18 22:16:00 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:06:17 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstswp(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!lst || !(*lst)->next)
+	if (!lst || !(*lst) || !(*lst)->next)
 		return ;
 	tmp = (*lst)->next;
 	(*lst)->next = tmp->next;
@@ -28,7 +28,7 @@ void	ft_lstpush(t_list **lst1, t_list **lst2)
 {
 	t_list	*tmp;
 
-	if (!lst2)
+	if (!lst2 || !(*lst2))
 		return ;
 	tmp = (*lst2)->next;
 	(*lst2)->next = *lst1;
@@ -40,7 +40,7 @@ void	ft_lstrot(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!lst || !(*lst)->next)
+	if (!lst || !(*lst) || !(*lst)->next)
 		return ;
 	tmp = (*lst)->next;
 	ft_lstadd_back(lst, *lst);
@@ -53,7 +53,7 @@ void	ft_lstrev(t_list **lst)
 	t_list	*tmp;
 	t_list	*tmp2;
 
-	if (!lst || !(*lst)->next)
+	if (!lst || !(*lst) || !(*lst)->next)
 		return ;
 	tmp = ft_lstlast(*lst);
 	tmp2 = *lst;
@@ -63,7 +63,7 @@ void	ft_lstrev(t_list **lst)
 	ft_lstadd_front(lst, tmp);
 }
 
-void	ft_pswp(t_vrb *vr, enum e_Ops op)
+void	ft_pswp(t_vrb *vr, enum e_Ops op, int prnt)
 {
 	if (op == RRA || op == RRR)
 		ft_lstrev(&(vr->st1));
@@ -81,5 +81,6 @@ void	ft_pswp(t_vrb *vr, enum e_Ops op)
 		ft_lstpush(&(vr->st1), &(vr->st2));
 	if (op == PB)
 		ft_lstpush(&(vr->st2), &(vr->st1));
-	ft_putsop(&op);
+	if (prnt)
+		ft_putsop(&op);
 }

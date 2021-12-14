@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/08 20:10:47 by aarnell           #+#    #+#             */
+/*   Updated: 2021/12/08 20:10:50 by aarnell          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -54,7 +66,7 @@ void	ft_lstswp(t_list **lst);
 void	ft_lstpush(t_list **lst1, t_list **lst2);
 void	ft_lstrot(t_list **lst);
 void	ft_lstrev(t_list **lst);
-void	ft_pswp(t_vrb *vr, enum e_Ops op);
+void	ft_pswp(t_vrb *vr, enum e_Ops op, int prnt);
 void	ft_putsop(enum e_Ops *op);
 void	srt_3itm(t_vrb *vr);
 void	srt_6itm(t_vrb *vr);

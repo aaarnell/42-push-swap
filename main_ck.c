@@ -6,63 +6,53 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 19:44:26 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/27 23:01:06 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:08:56 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_chkstr(char *dst, char *src)
+static int	ft_chkstr(char *src)
 {
-	int i;
-	int ch;
-
-	ch = 0;
-	while (dst)
-	{
-		i = 0;
-		while (src[i])
-		{
-			if (*dst == src[i])
-				ch = 1;
-			i++;
-		}
-		if (!ch)
-			return (0);
-		dst++;
-	}
-	return (1);
+	if (!ft_strncmp(src, "pa", 2) && ft_strlen(src) == 2)
+		return (PA);
+	else if (!ft_strncmp(src, "pb", 2) && ft_strlen(src) == 2)
+		return (PB);
+	else if (!ft_strncmp(src, "ra", 2) && ft_strlen(src) == 2)
+		return (RA);
+	else if (!ft_strncmp(src, "rb", 2) && ft_strlen(src) == 2)
+		return (RB);
+	else if (!ft_strncmp(src, "rr", 2) && ft_strlen(src) == 2)
+		return (RR);
+	else if (!ft_strncmp(src, "rra", 3) && ft_strlen(src) == 3)
+		return (RRA);
+	else if (!ft_strncmp(src, "rrb", 3) && ft_strlen(src) == 3)
+		return (RRB);
+	else if (!ft_strncmp(src, "rrr", 3) && ft_strlen(src) == 3)
+		return (RRR);
+	else if (!ft_strncmp(src, "sa", 2) && ft_strlen(src) == 2)
+		return (SA);
+	else if (!ft_strncmp(src, "sb", 2) && ft_strlen(src) == 2)
+		return (SB);
+	else if (!ft_strncmp(src, "ss", 2) && ft_strlen(src) == 2)
+		return (SS);
+	return (NaN);
 }
 
-static int ft_dtops_swp(t_vrb *vr, char *str)
+static int	ft_dtops_swp(t_vrb *vr, char *str)
 {
-	int i;
-	enum e_Ops op;
+	int	i;
 
-	i = ft_strlen(str) - 1;
-	op = PA;
-	if ((i == 1 || i == 2) && ft_chkstr(str, "abprs\0") \
-		&& ((ft_strchr("pr\0", str[0]) && ft_strchr("abr\0", str[i])) \
-		|| (i == 1 && str[0] == 's' && ft_strchr("abs\0", str[i]))) \
-		&& (i == 1 || (i == 2 && str[1] == 'r')))
+	i = ft_chkstr(str);
+	if (i)
 	{
-		if (str[0] != 'p')
-			op += 2;
-		if (str[0] != 'r')
-			op += 6;
-		if (i == 2)
-			op += 3;
-		if (str[i] != 'a')
-			op += 1;
-		if (str[i] != 'b')
-			op += 1;
-		ft_pswp(vr, op);
+		ft_pswp(vr, i, 0);
 		return (0);
 	}
 	return (1);
 }
 
-static int ft_gnl_dtops_swp(t_vrb *vr)
+static int	ft_gnl_dtops_swp(t_vrb *vr)
 {
 	int		i;
 	char	ch;
@@ -89,7 +79,7 @@ static int ft_gnl_dtops_swp(t_vrb *vr)
 	return (0);
 }
 
-static int ft_chord_st1(t_vrb *vr)
+static int	ft_chord_st1(t_vrb *vr)
 {
 	srch_mnavmx(vr->st1, &vr->min, &vr->avg, &vr->max);
 	if (vr->min == *(int *)(vr->st1->content) && ft_chkord(vr->st1))

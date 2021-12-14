@@ -6,7 +6,7 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:12:20 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/18 22:23:20 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:05:10 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ void	srt_3itm(t_vrb *vr)
 	if (ft_chkord(vr->st1))
 	{
 		if (vr->max == cur_e)
-			ft_pswp(vr, RA);
+			ft_pswp(vr, RA, 1);
 		else if (vr->min != cur_e)
-			ft_pswp(vr, RRA);
+			ft_pswp(vr, RRA, 1);
 	}
 	else
 	{
 		if (vr->max == cur_e)
-			ft_pswp(vr, RA);
-		ft_pswp(vr, SA);
+			ft_pswp(vr, RA, 1);
+		ft_pswp(vr, SA, 1);
 		if (vr->min == cur_e)
-			ft_pswp(vr, RA);
+			ft_pswp(vr, RA, 1);
 	}
 }

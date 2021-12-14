@@ -6,7 +6,7 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:56:54 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/23 19:07:15 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:08:02 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ void	ft_chkmv(t_vrb *vr)
 		{
 			if (vr->dp1 && vr->dp2 && (vr->op2 - vr->op1) == 1 \
 				&& vr->dp1-- && vr->dp2-- && vr->c_op--)
-				ft_pswp(vr, (vr->op2 + 1));
+				ft_pswp(vr, (vr->op2 + 1), 1);
 			else if (vr->dp1 && vr->dp1-- && vr->c_op--)
-				ft_pswp(vr, vr->op1);
+				ft_pswp(vr, vr->op1, 1);
 			else if (vr->dp2 && vr->dp2-- && vr->c_op--)
-				ft_pswp(vr, vr->op2);
+				ft_pswp(vr, vr->op2, 1);
 			else if (!vr->dp1 && !vr->dp2 && vr->c_op--)
-				ft_pswp(vr, PA);
+				ft_pswp(vr, PA, 1);
 		}
 	}
 }
@@ -118,5 +118,5 @@ void	ft_trnstmnx(t_vrb *vr, int n_st, int s_mnx)
 		op = op + 3;
 	while ((n_st == 1 && elm != *(int *)(vr->st1->content)) \
 		|| (n_st == 2 && elm != *(int *)(vr->st2->content)))
-		ft_pswp(vr, op);
+		ft_pswp(vr, op, 1);
 }

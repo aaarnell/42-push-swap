@@ -6,7 +6,7 @@
 /*   By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 22:13:15 by aarnell           #+#    #+#             */
-/*   Updated: 2021/10/23 19:07:54 by aarnell          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:05:25 by aarnell          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	srt_6itm(t_vrb *vr)
 		if (vr->min != *(int *)(vr->st1->content) && \
 			vr->max != *(int *)(vr->st1->content))
 		{
-			ft_pswp(vr, PB);
+			ft_pswp(vr, PB, 1);
 			vr->ln1--;
 		}
 		else
-			ft_pswp(vr, RA);
+			ft_pswp(vr, RA, 1);
 	}
 	srt_3itm(vr);
 	ft_chkmv(vr);
